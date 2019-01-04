@@ -9,6 +9,7 @@ import android.widget.ListView;
 import au.com.realestate.hometime.models.ApiResponse;
 import au.com.realestate.hometime.models.Token;
 import au.com.realestate.hometime.models.Tram;
+import au.com.realestate.hometime.utility.CommonUtils;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -66,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
         List<String> southValues = new ArrayList<>();
 
         for (Tram tram : northTrams) {
-            String date = dateFromDotNetDate(tram.predictedArrival).toString();
+            String date = CommonUtils.dateFromDotNetDate(tram.predictedArrival).toString();
             northValues.add(date);
         }
 
         for (Tram tram : southTrams) {
-            String date = dateFromDotNetDate(tram.predictedArrival).toString();
+            String date = CommonUtils.dateFromDotNetDate(tram.predictedArrival).toString();
             southValues.add(date);
         }
 
@@ -86,18 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 southValues));
     }
 
-    /////////////
-    // Convert .NET Date to Date
-    ////////////
-    private Date dateFromDotNetDate(String dotNetDate) {
 
-        int startIndex = dotNetDate.indexOf("(") + 1;
-        int endIndex = dotNetDate.indexOf("+");
-        String date = dotNetDate.substring(startIndex, endIndex);
-
-        Long unixTime = Long.parseLong(date);
-        return new Date(unixTime);
-    }
 
     ////////////
     // API
