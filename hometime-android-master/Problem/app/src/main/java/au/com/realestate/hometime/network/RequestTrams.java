@@ -7,6 +7,7 @@ import java.util.List;
 
 import au.com.realestate.hometime.models.ApiResponse;
 import au.com.realestate.hometime.models.Tram;
+import au.com.realestate.hometime.view.MainViewInterface;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -17,6 +18,7 @@ public class RequestTrams extends AsyncTask<String, Integer, List<Tram>> {
 
     private TramsApi mApi;
     private String mToken;
+    private MainViewInterface mMainInterface;
 
     /**
      * Constructor to initialise variables
@@ -24,14 +26,14 @@ public class RequestTrams extends AsyncTask<String, Integer, List<Tram>> {
      * @param api   TramsApi
      * @param token String representing the token
      */
-    public RequestTrams(TramsApi api, String token) {
+    public RequestTrams(TramsApi api, String token, MainViewInterface mainViewInterface) {
         this.mApi = api;
         this.mToken = token;
+        this.mMainInterface = mainViewInterface;
     }
 
     @Override
     protected List<Tram> doInBackground(String... stops) {
-
         Call<ApiResponse<Tram>> call = mApi.trams(stops[0], mToken);
         try {
             Response<ApiResponse<Tram>> resp = call.execute();
@@ -40,5 +42,13 @@ public class RequestTrams extends AsyncTask<String, Integer, List<Tram>> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(List<Tram> trams) {
+        super.onPostExecute(trams);
+        if (trams == null) {
+            mMainInterface.displayErrorMessage();
+        }
     }
 }
