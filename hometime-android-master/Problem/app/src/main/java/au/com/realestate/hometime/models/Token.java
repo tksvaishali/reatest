@@ -8,4 +8,22 @@ import com.squareup.moshi.Json;
 public class Token {
     @Json(name = "DeviceToken")
     public String value;
+
+    /**
+     * Get Method
+     *
+     * @return return the value string
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Set Method
+     *
+     * @return sets the value string
+     */
+    public void setValue(String value) {
+        this.value = value;
+    }
 }
