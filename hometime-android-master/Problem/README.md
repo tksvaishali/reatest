@@ -1,3 +1,16 @@
+This code is optization of existing code.
+
+This application displays list of tram timings along with minutes left in bracket  in the list under north and south section.
+Displayed error dialog when webservice fails or error occurs.
+Unit test cases added for some classes.
+
+Architecture & Design Pattern
+I have used MVP pattern for the implementation.
+Separate package created for model, view and presenter layer. All classes are grouped into respective package.
+
+
+Test Challenge
+
 __**HomeTime - Android**__
 ==================
 
