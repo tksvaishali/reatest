@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import au.com.realestate.hometime.R;
@@ -91,6 +92,11 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         }
     }
 
+    /**
+     * Method to update north list
+     *
+     * @param responseObject Response list
+     */
     @Override
     public void updateNorthListData(List responseObject) {
         displayNorthList(responseObject);
@@ -107,8 +113,9 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
         if (northTrams != null) {
             for (Tram tram : northTrams) {
-                String date = CommonUtils.dateFromDotNetDate(tram.predictedArrival).toString();
-                northValues.add(date);
+                Date date = CommonUtils.dateFromDotNetDate(tram.predictedArrival);
+                String formattedDate = date + " (" + CommonUtils.getDifferenceInMinutes(date) + " " + getString(R.string.min) + ")";
+                northValues.add(formattedDate);
             }
             northListView.setAdapter(new ArrayAdapter<>(
                     this,
@@ -117,6 +124,11 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         }
     }
 
+    /**
+     * Method to update south list
+     *
+     * @param responseObject Response list
+     */
     @Override
     public void updateSouthListData(List responseObject) {
         displaySouthList(responseObject);
@@ -133,8 +145,9 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
         if (southTrams != null) {
             for (Tram tram : southTrams) {
-                String date = CommonUtils.dateFromDotNetDate(tram.predictedArrival).toString();
-                southValues.add(date);
+                Date date = CommonUtils.dateFromDotNetDate(tram.predictedArrival);
+                String formattedDate = date + " (" + CommonUtils.getDifferenceInMinutes(date) + " " + getString(R.string.min) + ")";
+                southValues.add(formattedDate);
             }
 
             southListView.setAdapter(new ArrayAdapter<>(
@@ -143,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
                     southValues));
         }
     }
-
 
     @Override
     public void displayErrorMessage() {

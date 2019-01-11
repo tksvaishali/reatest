@@ -9,7 +9,7 @@ import au.com.realestate.hometime.network.TramsApi;
 import au.com.realestate.hometime.view.MainViewInterface;
 
 /**
- * MainPresenter class is the Presenter between view and mode.
+ * MainPresenter class is the Presenter between view and model.
  */
 public class MainPresenter {
     /**

@@ -9,7 +9,7 @@ import au.com.realestate.hometime.models.Token;
 import retrofit2.Call;
 
 /**
- * RequestToken is an AsyncTask to get the token for webservice call
+ * RequestToken is an AsyncTask to get the token from webservice call
  */
 public class RequestToken extends AsyncTask<String, Integer, String> {
 
